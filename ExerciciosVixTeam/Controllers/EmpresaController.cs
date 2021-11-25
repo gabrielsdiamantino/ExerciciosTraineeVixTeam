@@ -18,12 +18,30 @@ namespace ExerciciosVixTeam.Controllers
             return View();
         }
 
-      
+        public ActionResult Cadastrar()
+        {
+            var empresaModel = new EmpresaModel();
+            if (ViewData["DadosEmpresa"] != null)
+            {
+                empresaModel = (EmpresaModel)ViewData["DadosEmpresa"];
+            }
+            return View(empresaModel);
+        }
+
+        [HttpPost]
+        [ValidateAntiForgeryToken]
+
+        public ActionResult Cadastro([Bind("Codigo, Nome, NomeFantasia, CNPJ")] EmpresaModel empresaModel)
+        {
+            ViewData["DadosEmpresa"] = empresaModel;
+            return View("Index");
+        }
 
         [ResponseCache(Duration = 0, Location = ResponseCacheLocation.None, NoStore = true)]
         public IActionResult Error()
         {
-            return View(new ErrorViewModel { RequestId = Activity.Current?.Id ?? HttpContext.TraceIdentifier });
+           return View(new ErrorViewModel { RequestId = Activity.Current?.Id ?? HttpContext.TraceIdentifier });
         }
+
     }
 }

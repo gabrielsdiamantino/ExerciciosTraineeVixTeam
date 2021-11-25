@@ -1,8 +1,14 @@
+﻿using Microsoft.EntityFrameworkCore;
+using Microsoft.Extensions.DependencyInjection;
+using ExerciciosVixTeam.Data;
 var builder = WebApplication.CreateBuilder(args);
 
 // Add services to the container.
 builder.Services.AddControllersWithViews();
 builder.Services.AddRazorPages().AddRazorRuntimeCompilation();
+
+builder.Services.AddDbContext<ExerciciosVixTeamContext>(options =>
+    options.UseSqlServer(builder.Configuration.GetConnectionString("ExerciciosVixTeamContext")));
 
 var app = builder.Build();
 

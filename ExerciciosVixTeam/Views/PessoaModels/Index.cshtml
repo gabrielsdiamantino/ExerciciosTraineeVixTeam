@@ -1,0 +1,64 @@
+﻿@model IEnumerable<ExerciciosVixTeam.Models.PessoaModel>
+
+@{
+    ViewData["Title"] = "Index";
+}
+
+<h1>Cadastro</h1>
+
+<p>
+    <a asp-action="Create">Novo Registro</a>
+</p>
+<table class="table">
+    <thead>
+        <tr>
+            <th>
+                @Html.DisplayNameFor(model => model.Nome)
+            </th>
+            <th>
+                @Html.DisplayNameFor(model => model.Email)
+            </th>
+            <th>
+                @Html.DisplayNameFor(model => model.DataNascimento)
+            </th>
+            <th>
+                @Html.DisplayNameFor(model => model.QuantidadeFilhos)
+            </th>
+            <th>
+                @Html.DisplayNameFor(model => model.Salario)
+            </th>
+            <th>
+                @Html.DisplayNameFor(model => model.Status)
+            </th>
+        </tr>
+    </thead>
+    <tbody>
+@foreach (var item in Model) {
+        <tr>
+            <td>
+                @Html.DisplayFor(modelItem => item.Nome)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.Email)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.DataNascimento)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.QuantidadeFilhos)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.Salario)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.Status)
+            </td>
+            <td>
+                <a asp-action="Edit" asp-route-id="@item.Codigo">Editar</a> |
+                <a asp-action="Details" asp-route-id="@item.Codigo">Detalhe</a> |
+                <a asp-action="Delete" asp-route-id="@item.Codigo">Apagar</a>
+            </td>
+        </tr>
+}
+    </tbody>
+</table>

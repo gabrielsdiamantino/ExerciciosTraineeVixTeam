@@ -19,22 +19,12 @@ body {
   margin-bottom: 60px;
 }
 
-
-.text-dev {
-    text-align: justify;
+.t1-empresa{
+    margin-top: 20px;
+    padding: 10px;
 }
-#ctn-empresa{
-    padding:20px;
-}
-#ctn-empresa img {
-    padding:20px;    
+.form-empresa {
+    padding: 20px;
+    text-align: start;
 }
 
-#ctn-empresa h1 {
-   font-family: 'M PLUS 2', sans-serif;
-}
-
-#ctn-empresa p {
-    text-align: justify;
-    font-family: 'M PLUS 2', sans-serif;
-}

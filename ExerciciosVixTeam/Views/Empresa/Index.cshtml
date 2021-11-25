@@ -1,23 +1,33 @@
-﻿@{
+﻿
+
+@{
     ViewData["Title"] = "Home Page";
 }
-
+@model EmpresaModel;
 
 
 <div class="text-center" id="ctn-empresa">
-    <div class="conteudo-empresa" >
-        <img src="Image/1.jpg" class="img-fluid" alt="...">
-        <h1 id="title-empresa" >Quem Somos</h1>
-        <p id="text-p">Lorem ipsum dolor sit amet, consectetur adipiscing elit. Suspendisse rutrum venenatis urna,
-        non tempor sapien gravida sit amet. Curabitur nulla purus, sodales a cursus pulvinar, volutpat
-        a tortor. Suspendisse viverra lacus elementum aliquam hendrerit. Nulla facilisi. Aliquam erat
-        volutpat. Vestibulum ante ipsum primis in faucibus orci luctus et ultrices posuere cubilia curae; 
-        Pellentesque euismod eget mi at placerat. Cras pellentesque purus at massa sodales accumsan. 
-        Maecenas aliquet luctus feugiat. Quisque consectetur tincidunt pulvinar. Nulla eu lorem quam.
-        Quisque sapien lacus, rhoncus eu sem in, eleifend rutrum ligula. Cras sit amet vestibulum tortor,
-        accumsan auctor ex. Nam elementum odio ac nulla interdum, quis cursus arcu tincidunt. Aliquam 
-        sollicitudin, tortor id blandit commodo, leo ante consequat lacus, et lobortis neque lacus 
-        nec ipsum. Cras ullamcorper egestas quam, a fringilla lacus commodo sed.</p>
-    </div>
-   
+
+    <h1 class="t1-empresa" >Formulário de Cadastro</h1>
+
+    <form class="form-empresa" asp-action="Cadastro" >
+
+       
+     <div class="mb-3">
+        <label for="exampleInputEmail1" class="form-label">Nome</label>
+        <input type="text" class="form-control" id="Nome"  asp-for= "Nome" placeholder="Nome">
+     </div>
+
+      <div class="mb-3">
+        <label for="exampleInputPassword1" class="form-label">Nome Fantasia</label>
+        <input type="text" class="form-control" asp-for="NomeFantasia" placeholder="Nome Fantasia">
+      </div>
+
+      <div class="mb-3">
+        <label for="exampleInputPassword1" class="form-label">CNPJ</label>
+        <input type="text" class="form-control" asp-for="CNPJ" placeholder="XX. XXX. XXX/0001-XX">
+      </div>
+      
+     <button type="submit" value="Create" class="btn btn-primary">Salvar</button>
+</form> 
 </div>

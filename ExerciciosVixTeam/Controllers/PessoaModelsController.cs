@@ -73,18 +73,33 @@ namespace ExerciciosVixTeam.Controllers
         [ValidateAntiForgeryToken]
         public async Task<IActionResult> Create([Bind("Codigo,Nome,Email,DataNascimento,QuantidadeFilhos,Salario")] PessoaModel pessoaModel)
         {
-           
-                pessoaModel.Status = "Ativo";
+            var pessoaEmail = _context.PessoaModel.Where(x => x.Email.Equals(pessoaModel.Email) && x.Codigo != pessoaModel.Codigo);
+            if(pessoaEmail.Count() > 0)
+            {
+                ModelState.AddModelError("Regra de Negócio", "E-mail já Cadastrado!");
+                return View(pessoaModel);
+            }
+
+            DateTime x = DateTime.Parse("01/01/1990");
+            if (pessoaModel.DataNascimento < x)
+            {
+                ModelState.AddModelError("Regra de Negócio", "Data de Nascimento não pode ser inferior a 01/01/1990.");
+                return View(pessoaModel);
+            }
+
+            pessoaModel.Status = "Ativo";
                 _context.Add(pessoaModel);
                 await _context.SaveChangesAsync();
                 return RedirectToAction(nameof(Index));
          
             return View(pessoaModel);
         }
+      
 
-        // GET: PessoaModels/Edit/5
-        public async Task<IActionResult> Edit(int? id)
+    // GET: PessoaModels/Edit/5
+    public async Task<IActionResult> Edit(int? id)
         {
+           
             if (id == null)
             {
                 return NotFound();
@@ -115,7 +130,14 @@ namespace ExerciciosVixTeam.Controllers
 
             if (ModelState.IsValid)
             {
-               
+                //aqui
+                var editPessoa = pessoaModel.Status;
+                if(editPessoa == "Inativo")
+                {
+                    ModelState.AddModelError("Regra de Negócio", "Pessoas com Status INATIVO não podem ser editadas.");
+                    return View(pessoaModel);
+                }
+              
                DateTime x = DateTime.Parse("01/01/1990"); 
                if (pessoaModel.DataNascimento < x)
                 {
@@ -144,37 +166,42 @@ namespace ExerciciosVixTeam.Controllers
         }
 
         // GET: PessoaModels/Delete/5
+
+       
         public async Task<IActionResult> Delete(int? id)
         {
-            
-            
             if (id == null)
             {
                 return NotFound();
             }
 
-            var pessoaModel = await _context.PessoaModel
+            var PessoaModel = await _context.PessoaModel
                 .FirstOrDefaultAsync(m => m.Codigo == id);
-            if (pessoaModel == null)
+            if (PessoaModel == null)
             {
                 return NotFound();
             }
 
-            return View(pessoaModel);
+            return View(PessoaModel);
         }
 
         // POST: PessoaModels/Delete/5
         [HttpPost, ActionName("Delete")]
         [ValidateAntiForgeryToken]
+
+       
         public async Task<IActionResult> DeleteConfirmed(int id)
         {
+
             var pessoaModel = await _context.PessoaModel.FindAsync(id);
             _context.PessoaModel.Remove(pessoaModel);
             await _context.SaveChangesAsync();
             return RedirectToAction(nameof(Index));
         }
+       
 
-        private bool PessoaModelExists(int id)
+
+    private bool PessoaModelExists(int id)
         {
             return _context.PessoaModel.Any(e => e.Codigo == id);
         }

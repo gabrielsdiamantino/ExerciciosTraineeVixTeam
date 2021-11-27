@@ -10,6 +10,7 @@
 <hr />
 <div class="row">
     <div class="col-md-4">
+        @Html.ValidationMessage("Regra de Negócio")
         <form asp-action="Create">
             <div asp-validation-summary="ModelOnly" class="text-danger"></div>
             <div class="form-group">
@@ -26,6 +27,7 @@
                 <label asp-for="DataNascimento" class="control-label">Data de Nascimento</label>
                 <input asp-for="DataNascimento" class="form-control" />
                 <span asp-validation-for="DataNascimento" class="text-danger"></span>
+                
             </div>
             <div class="form-group">
                 <label asp-for="QuantidadeFilhos" class="control-label">Quantidade de Filhos</label>

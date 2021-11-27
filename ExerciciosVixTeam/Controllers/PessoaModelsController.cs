@@ -170,6 +170,7 @@ namespace ExerciciosVixTeam.Controllers
        
         public async Task<IActionResult> Delete(int? id)
         {
+           
             if (id == null)
             {
                 return NotFound();
@@ -189,10 +190,8 @@ namespace ExerciciosVixTeam.Controllers
         [HttpPost, ActionName("Delete")]
         [ValidateAntiForgeryToken]
 
-       
         public async Task<IActionResult> DeleteConfirmed(int id)
         {
-
             var pessoaModel = await _context.PessoaModel.FindAsync(id);
             _context.PessoaModel.Remove(pessoaModel);
             await _context.SaveChangesAsync();
@@ -201,7 +200,7 @@ namespace ExerciciosVixTeam.Controllers
        
 
 
-    private bool PessoaModelExists(int id)
+        private bool PessoaModelExists(int id)
         {
             return _context.PessoaModel.Any(e => e.Codigo == id);
         }

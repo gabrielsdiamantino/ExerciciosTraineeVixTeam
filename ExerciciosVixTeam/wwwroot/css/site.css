@@ -28,3 +28,63 @@ body {
     text-align: start;
 }
 
+#cs-213{
+    margin:1% 0 5% 0;
+    background-color:#;  
+}
+
+#cards-213{
+    margin-top: 5%;
+}
+
+.cad-213{
+    margin: 3% 0 3% 0;
+}
+
+.adc-213 {
+    background-color: #284b63;
+    text-decoration: none;
+    color: #d9d9d9;
+    padding: 5px;
+    border-radius: 5px;
+    transition: 0.3s;
+}
+.adc-213:hover {
+    color: #d9d9d9;
+    font-size: 17px;
+    transition:0.3s;
+}
+
+.table {
+   
+    color: #284b63;
+    width: 100%;
+    border-radius: 8px;
+}
+
+.alt-213 {
+    background-color: #284b63;
+    text-decoration: none;
+    color: #d9d9d9;
+    padding:3px;
+    border-radius:5px;
+    margin-right:2px;
+}
+.alt-213:hover {
+    color: #72a56c;       
+}
+
+#sv-213{
+    margin-top:20px;
+}
+
+#salve-213{
+    background-color: #284b63;
+    border:none;
+}
+.azin-213 {
+    text-decoration: none;
+    color: #284b63;
+    font-size:17px;
+    margin-left:20px;
+}

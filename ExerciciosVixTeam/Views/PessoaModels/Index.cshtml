@@ -54,6 +54,7 @@
                 @Html.DisplayFor(modelItem => item.Status)
             </td>
             <td>
+                <a asp-action="AlterarStatus" asp-route-id="@item.Codigo">Alterar Situação</a> | 
                 <a asp-action="Edit" asp-route-id="@item.Codigo">Editar</a> |
                 <a asp-action="Details" asp-route-id="@item.Codigo">Detalhe</a> |
                 <a asp-action="Delete" asp-route-id="@item.Codigo">Apagar</a>

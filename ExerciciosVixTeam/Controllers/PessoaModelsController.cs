@@ -25,6 +25,23 @@ namespace ExerciciosVixTeam.Controllers
             return View(await _context.PessoaModel.ToListAsync());
         }
 
+        [HttpGet]
+        public async Task<IActionResult> AlterarStatus(int id)
+        {
+            var pessoaModel = await _context.PessoaModel.FindAsync(id);
+            if (pessoaModel.Status.Equals("Ativo"))
+            {
+                pessoaModel.Status = "Inativo";
+            }
+            else
+            {
+                pessoaModel.Status = "Ativo";
+            }
+            _context.Update(pessoaModel);
+            await _context.SaveChangesAsync();
+            return RedirectToAction(nameof(Index));
+        }
+
         // GET: PessoaModels/Details/5
         public async Task<IActionResult> Details(int? id)
         {
@@ -56,13 +73,12 @@ namespace ExerciciosVixTeam.Controllers
         [ValidateAntiForgeryToken]
         public async Task<IActionResult> Create([Bind("Codigo,Nome,Email,DataNascimento,QuantidadeFilhos,Salario")] PessoaModel pessoaModel)
         {
-           // if (ModelState.IsValid)
-           // {
+           
                 pessoaModel.Status = "Ativo";
                 _context.Add(pessoaModel);
                 await _context.SaveChangesAsync();
                 return RedirectToAction(nameof(Index));
-          //  }
+         
             return View(pessoaModel);
         }
 
@@ -82,6 +98,9 @@ namespace ExerciciosVixTeam.Controllers
             return View(pessoaModel);
         }
 
+
+        
+
         // POST: PessoaModels/Edit/5
         // To protect from overposting attacks, enable the specific properties you want to bind to.
         // For more details, see http://go.microsoft.com/fwlink/?LinkId=317598.
@@ -96,6 +115,13 @@ namespace ExerciciosVixTeam.Controllers
 
             if (ModelState.IsValid)
             {
+               
+               DateTime x = DateTime.Parse("01/01/1990"); 
+               if (pessoaModel.DataNascimento < x)
+                {
+                    ModelState.AddModelError("Regra de Negócio", "Data de Nascimento não pode ser inferior a 01/01/1990.");
+                    return View(pessoaModel);
+                }
                 try
                 {
                     _context.Update(pessoaModel);
@@ -120,6 +146,8 @@ namespace ExerciciosVixTeam.Controllers
         // GET: PessoaModels/Delete/5
         public async Task<IActionResult> Delete(int? id)
         {
+            
+            
             if (id == null)
             {
                 return NotFound();
